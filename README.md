@@ -77,46 +77,69 @@ public class ConexaoBD {
 - **Code Smell:** Duplicate Code
 - **Onde:** Conexão com banco em 5 arquivos diferentes
 - **Antes:** 
+
 TelaLogin.java: 30 linhas de conexão
+
 TelaDashboard.java: 30 linhas de conexão
+
 TelaUsuarios.java: 30 linhas de conexão
+
 TelaProcessos.java: 30 linhas de conexão
+
 TelaManuais.java: 30 linhas de conexão
+
 Total: ~150 linhas duplicadas
 - **Depois:**
+
 ConexaoBD.java: 40 linhas (reutilizáveis)
+
 Economia: ~110 linhas
 
 ### 2.4 Separação de Camadas (Layer Separation)
 - **Padrão Aplicado:** MVC (Model-View-Controller) simplificado
 - **Camadas Criadas:** 
+
 1.Model (modelo): Usuario, Processo, Setor
+
 2.Data Access (dados): UsuarioDAO, ProcessoDAO
+
 3.Service (servicos): AutenticacaoService, ProcessoService
+
 4.View (telas - a refatorar): Futuras telas web
 
 ### 3. PADRÕES DE PROJETO UTILIZADOS
 ### 3.1 DAO (Data Access Object)
 - **O que é:** Padrão que isola a lógica de acesso a dados da lógica de negócio.
 - **Classes:** UsuarioDAO.java, ProcessoDAO.java
-- **Justificativa:**
+- **Justificativa:** 
+
 1.Permite trocar o banco de dados sem afetar o resto do sistema
+
 2.Facilita testes unitários
+
 3.Centraliza queries SQL
 
 ### 3.2 Service Layer
 - **O que é:** Camada intermediária que contém regras de negócio.
 - **Classes:** AutenticacaoService.java, ProcessoService.java
-- **Justificativa:**
+- **Justificativa:** 
+
 1.Separa regras de negócio da persistência
+
 2.Facilita reutilização
+
 3.Permite validações centralizadas
 
 ### 4. BENEFÍCIOS DA REFACTORIZAÇÃO
+
 1.Manutenibilidade: Código mais fácil de entender e modificar
+
 2.Testabilidade: Classes isoladas permitem testes unitários
+
 3.Reusabilidade: DAOs e Services podem ser usados em diferentes telas
+
 4.Legibilidade: Nomes claros e responsabilidades definidas
+
 5.Redução de Bugs: Menos código duplicado = menos pontos de falha
 
 ### 5. ESTRUTURA DO PROJETO
@@ -149,8 +172,12 @@ sistemaintegracinicial/
 
 ### 6. EVIDÊNCIAS DO REPOSITÓRIO GITHUB
 - **URL do Repositório:** https://github.com/marjoriabarros-star/sistema-integra-inicial-refatorado
-- **Commits Realizados:**
+- **Commits Realizados:** 
+
 1.feat: estrutura inicial com refatoração SOLID
+
 2.refactor: extração de classes de modelo
+
 3.refactor: criação de DAOs para acesso a dados
+
 4.test: adição de testes na classe Main
