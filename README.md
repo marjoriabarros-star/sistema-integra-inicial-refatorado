@@ -47,7 +47,7 @@
 - **Onde:** TelaLogin.java, TelaDashboard.java, TelaProcessos.java
 
 - **Antes:**
-```java
+
 // Em TelaLogin.java
 private Connection conectar(Component parentComponent) {
     try {
@@ -122,17 +122,29 @@ Economia: ~110 linhas
 ### 5. ESTRUTURA DO PROJETO
 sistemaintegracinicial/
 ├── modelo/
+
 │   ├── Usuario.java
+
 │   ├── Processo.java
+
 │   └── Setor.java
+
 ├── dados/
+
 │   ├── UsuarioDAO.java
+
 │   └── ProcessoDAO.java
+
 ├── servicos/
+
 │   ├── AutenticacaoService.java
+
 │   └── ProcessoService.java
+
 ├── util/
+
 │   └── ConexaoBD.java
+
 └── Main.java (testes)
 
 ### 6. EVIDÊNCIAS DO REPOSITÓRIO GITHUB
