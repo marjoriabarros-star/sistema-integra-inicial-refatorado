@@ -22,7 +22,24 @@ public class AutenticacaoService {
     private UsuarioDAO usuarioDAO;
 
     public AutenticacaoService() {
-        this.usuarioDAO = new UsuarioDAO();
+        // Construtor padrão - DAO será inicializado quando necessário
+    }
+    
+    /**
+     * Construtor que permite injetar um DAO (útil para testes)
+     */
+    public AutenticacaoService(UsuarioDAO usuarioDAO) {
+        this.usuarioDAO = usuarioDAO;
+    }
+
+    /**
+     * Obtém o DAO, inicializando se necessário
+     */
+    private UsuarioDAO getUsuarioDAO() {
+        if (usuarioDAO == null) {
+            usuarioDAO = new UsuarioDAO();
+        }
+        return usuarioDAO;
     }
 
     /**
@@ -33,21 +50,26 @@ public class AutenticacaoService {
      */
     public String autenticar(String email, String senha) {
         // Validação de campos obrigatórios
-        if (email == null || email.trim().isEmpty()) {
+        if (email == null || email.isEmpty()) {
             return "ERRO: Email não pode ser vazio";
         }
         
-        if (senha == null || senha.trim().isEmpty()) {
+        if (senha == null || senha.isEmpty()) {
             return "ERRO: Senha não pode ser vazia";
         }
         
-        // Autenticação no banco
-        Usuario usuario = usuarioDAO.autenticar(email, senha);
-        
-        if (usuario != null) {
-            return "SUCESSO:" + usuario.getCargo();
-        } else {
-            return "ERRO: Email ou senha inválidos";
+        // Autenticação no banco (DAO)
+        try {
+            Usuario usuario = getUsuarioDAO().autenticar(email, senha);
+            
+            if (usuario != null) {
+                return "SUCESSO:" + usuario.getCargo();
+            } else {
+                return "ERRO: Email ou senha inválidos";
+            }
+        } catch (Exception e) {
+            // Em caso de erro de conexão, retorna erro amigável
+            return "ERRO: Falha na conexão com o banco de dados";
         }
     }
 
@@ -58,6 +80,7 @@ public class AutenticacaoService {
      * @return true se tiver permissão, false caso contrário
      */
     public boolean temPermissao(String cargo, String funcionalidade) {
+        // Este método NÃO depende do banco de dados
         if (cargo == null || funcionalidade == null) {
             return false;
         }

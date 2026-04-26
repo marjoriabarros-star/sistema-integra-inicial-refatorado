@@ -1,0 +1,13 @@
+# Build output - NÃO enviar para GitHub
+target/
+*.class
+*.jar
+
+# NetBeans
+nbproject/private/
+build/
+dist/
+*.user
+# Logs
+*.log
+*.tmp
