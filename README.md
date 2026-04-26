@@ -88,8 +88,8 @@ ConexaoBD.java: 40 linhas (reutilizáveis)
 Economia: ~110 linhas
 
 ### 2.4 Separação de Camadas (Layer Separation)
-- **Padrão Aplicado:**MVC (Model-View-Controller) simplificado
-- **Camadas Criadas:**
+- **Padrão Aplicado:** MVC (Model-View-Controller) simplificado
+- **Camadas Criadas:** 
 1.Model (modelo): Usuario, Processo, Setor
 2.Data Access (dados): UsuarioDAO, ProcessoDAO
 3.Service (servicos): AutenticacaoService, ProcessoService
